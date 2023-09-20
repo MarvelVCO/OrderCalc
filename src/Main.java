@@ -1,9 +1,8 @@
-import java.util.Arrays;
-import java.util.Scanner;
-import java.io.FileNotFoundException;
-import java.io.File;
-import java.util.Random;
-
+import java.util.Arrays;    // imports Arrays
+import java.util.Scanner;    // imports Scanner
+import java.io.FileNotFoundException;    // imports AFileNotFoundException
+import java.io.File;    // imports File
+import java.util.Random;    // imports Random
 public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -31,15 +30,15 @@ public class Main {
         System.out.println("Type anything to start");
         scan.nextLine();
 
-        boolean win = false;
-        String guess;
-        boolean correctLetter = false;
+        boolean win = false;    // adds boolean `win` and sets it to false
+        String guess;   // adds string guess
+        boolean correctLetter = false;  // adds boolean `correctLetter` and sets it to false
 
         StringBuilder underscores = new StringBuilder();    // making an array, `found`, to contain all the found letters`
         for (String element : letters) {
             underscores.append("_ ");
         }
-        String found[] = underscores.toString().split(" ");
+        String found[] = underscores.toString().split(" "); // adds string array `found` and sets it to be one underscore per letter in the word
 
         while (!win) {
             System.out.println("Please guess a letter or word");
