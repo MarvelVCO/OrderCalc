@@ -11,7 +11,7 @@ public class Main {
         Random rand = new Random();
 
         try {
-            File myObj = new File("Words.txt");
+            File myObj = new File("Words.txt"); // reading the file and adding all values to `data`
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 data.append(" " + myReader.nextLine());
@@ -23,10 +23,9 @@ public class Main {
             e.printStackTrace();
         }
 
-        String parsedData[] = data.toString().split(" ");
-        String word = parsedData[rand.nextInt(1001)];
-        String letters[] = word.split("");
-        System.out.println(word);
+        String parsedData[] = data.toString().split(" ");   // parsing the data to a array
+        String word = parsedData[rand.nextInt(1001)];   // getting a random word from the array
+        String letters[] = word.split("");  // making an array to contain each letter
 
         System.out.println("Welcome to a word guessing game!");
         System.out.println("Type anything to start");
@@ -36,7 +35,7 @@ public class Main {
         String guess;
         boolean correctLetter = false;
 
-        StringBuilder underscores = new StringBuilder();
+        StringBuilder underscores = new StringBuilder();    // making an array, `found`, to contain all the found letters`
         for (String element : letters) {
             underscores.append("_ ");
         }
@@ -47,19 +46,19 @@ public class Main {
             guess = scan.nextLine();
 
             if (guess.length() > 1) {
-                if (guess.equals(word)) {
+                if (guess.equals(word)) {   // sets `win` to true when you win the game
                     win = true;
                 } else {
                     System.out.println("Not the word, try again");
                 }
             } else {
-                for (int i = 0; i < letters.length; i++) {
+                for (int i = 0; i < letters.length; i++) {  // sets the underscores to letters when you guess them
                     if (letters[i].equals(guess)) {
                         found[i] = guess;
                     }
                 }
 
-                boolean allLettersFound = Arrays.stream(found).noneMatch(s -> s.equals("_"));
+                boolean allLettersFound = Arrays.stream(found).noneMatch(s -> s.equals("_"));   // a check for when you guess all the letters
                 if (allLettersFound) {
                     win = true;
                 }
