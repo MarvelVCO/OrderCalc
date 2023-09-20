@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.File;
@@ -23,7 +24,7 @@ public class Main {
         }
 
         String parsedData[] = data.toString().split(" ");
-        String word  = parsedData[rand.nextInt(1001)];
+        String word = parsedData[rand.nextInt(1001)];
         String letters[] = word.split("");
         System.out.println(word);
 
@@ -34,33 +35,39 @@ public class Main {
         boolean win = false;
         String guess;
         boolean correctLetter = false;
-        while (win == false) {
+
+        StringBuilder underscores = new StringBuilder();
+        for (String element : letters) {
+            underscores.append("_ ");
+        }
+        String found[] = underscores.toString().split(" ");
+
+        while (!win) {
             System.out.println("Please guess a letter or word");
             guess = scan.nextLine();
+
             if (guess.length() > 1) {
                 if (guess.equals(word)) {
                     win = true;
-                }
-                else {
+                } else {
                     System.out.println("Not the word, try again");
                 }
-            }
-            else {
-                for (String element : letters) {
-                    if (element.equals(guess)) {
-                        correctLetter = true;
+            } else {
+                for (int i = 0; i < letters.length; i++) {
+                    if (letters[i].equals(guess)) {
+                        found[i] = guess;
                     }
                 }
-                if (correctLetter == true) {
-                    System.out.println("That letter is in the word!");
-                    correctLetter = false;
-                }
-                else {
-                    System.out.println("That letter is not in the word!");
+
+                boolean allLettersFound = Arrays.stream(found).noneMatch(s -> s.equals("_"));
+                if (allLettersFound) {
+                    win = true;
                 }
 
+                System.out.println("Current progress: " + String.join(" ", found));
             }
         }
-        System.out.println("You win!");
+
+        System.out.println("Congratulations! You win! The word is: " + word);
     }
 }
