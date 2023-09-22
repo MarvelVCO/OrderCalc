@@ -19,18 +19,19 @@ public class Main {
         double cost = 0;
         double itemCost = 0;
         String items[] = {};
-        while (itemCost != -1) {
+        while (itemCost != -1) {    // keeps adding inputed number to `cost`
             System.out.print("Enter a cost in dollars and cents, e.g. 12.50 (-1 to end): ");
             itemCost = scan.nextDouble();
             scan.nextLine();
-            if (itemCost != -1) {
+
+            if (itemCost != -1) {   // keeps adding the inputted item to an array to be displayed later
                 System.out.print("Enter the item: ");
                 items = Arrays.copyOf(items, items.length + 1);
                 items[items.length - 1] = scan.nextLine();
                 cost += itemCost;
             }
         }
-        System.out.println("-------------------------------");
+        System.out.println("-------------------------------");  //display of all values
         System.out.println("Total bill before tip: $" + cost);
         System.out.println("Total percentage: " + ((int) (tipDecimal * 100)) + "%");
         System.out.printf("Total tip: $%.2f %n", (cost * tipDecimal));
@@ -40,7 +41,7 @@ public class Main {
         System.out.printf("Total cost per person: $%.2f %n", ((cost + cost * tipDecimal) / groupSize));
         System.out.println("-------------------------------");
         System.out.println("Items ordered:");
-        for (String item : items) {
+        for (String item : items) { // displays each value in the array of items
             System.out.println(item);
         }
     }
